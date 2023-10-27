@@ -1,0 +1,9 @@
+react-practices
+    kanban board
+    emaillist
+    guestbook 
+
+mysite
+    mysite07
+        |--- backend(maven project)
+        |--- frontend(javascript project)
