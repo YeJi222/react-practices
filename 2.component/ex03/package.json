@@ -1,10 +1,10 @@
 {
   "name": "ex03",
   "version": "1.0.0",
-  "description": "",
+  "description": "ex02: Component Styling\r 1) inline styling\r 2) Normal CSS\r    - css-loader option: {module: false}\r    - 실행\r      $ npm run debug src=02 css-module=false",
   "main": "index.js",
   "scripts": {
-    "start": "npx webpack serve --progress --env",
+    "debug": "npx webpack serve --progress --env",
     "build": "npx webpack"
   },
   "keywords": [],
@@ -26,6 +26,7 @@
   "dependencies": {
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "styled-components": "^6.1.0"
   }
 }

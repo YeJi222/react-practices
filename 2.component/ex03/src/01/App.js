@@ -5,7 +5,7 @@ function App() {
         <div id={'App'}>
             <h1 
                 onClick={function(){
-                    console.log('click');
+                    console.log('click!');
                 }}>
                 Inline Handler
             </h1>
