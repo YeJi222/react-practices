@@ -7,13 +7,13 @@ export default class App extends Component {
     }
 
     onScroll() {
-        console.log(this.outterRef.scrollTop, this.outterRef.clientHeight, this.innerRef.clientHeight);      
+        console.log(this.outerRef.scrollTop, this.outerRef.clientHeight, this.innerRef.clientHeight);
     }
 
     render() {
         return (
             <div
-                ref={ (ref) => this.outterRef = ref }
+                ref={ (ref) => this.outerRef = ref }
                 className={'App'}
                 onScroll={this.onScroll.bind(this)}>
                 <div

@@ -6,21 +6,21 @@ export default class extends Component {
         // this.val = this.props.begin;
         this.state = {
             val: this.props.begin,
-            val2: 20, 
-            val3: 30     
+            val2: 20,
+            val3: 30
         }
     }
 
     render() {
         return (
             <div>
-                <button onClick={ e => {
+                <button onClick={e => {
                     // this.val += 1;
                     // console.log(this.val);
                     // this.render();
                     this.setState({
                         val: this.state.val + this.props.step
-                    })
+                    });
                 }}>
                     <strong>+</strong>
                 </button>
@@ -30,7 +30,6 @@ export default class extends Component {
                     // this.val
                     this.state.val
                 }
-                    
                 </span>
             </div>
         );

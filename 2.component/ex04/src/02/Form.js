@@ -8,29 +8,35 @@ export default function Form() {
     const [validEmail, setValidEmail] = useState(false);
     const [gender, setGender] = useState('male');
     const [birthYear, setBirthYear] = useState('');
+    const [description, setDescription] = useState('');
+    const [agreeProv, setAgreeProv] = useState('no');
 
     const onChangeName = (e) => {
         // setName(e.target.value);
-        // 10자 제한 
-        setName(e.target.value.substr(0, 10))
+        // 10자 제한
+        setName(e.target.value.substr(0, 10));
     }
 
     const onChangeEmail = (e) => {
         setEmail(e.target.value);
-        // check email format(yeji@gmail.com)
-        const re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/; // 이메일 정규 표현식 
+        //check email format(kickscar@gmil.com)
+        const re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
         setValidEmail(re.test(e.target.value));
     }
 
     return (
         <form id="joinForm" name="joinForm" method="post" action="/do/not/post">
             <label htmlFor="name">이름</label>
-            <input id="name" name="name" type="text" value={name} onChange={onChangeName} />
+            <input id="name" name="name" type="text" value={name} onChange={onChangeName}/>
 
             <label htmlFor="email">이메일</label>
-            <input id="email" name="email" type="text" value={email} onChange={onChangeEmail} />
-            {
-                email === '' ? null : validEmail ? <b>o</b> : <b>x</b>
+            <input id="email" name="email" type="text" value={email} onChange={onChangeEmail}/>
+            { 
+                email === '' ? 
+                    null : 
+                    validEmail ? 
+                        <b>o</b> : 
+                        <b>x</b>            
             }
 
             <label htmlFor="password">패스워드</label>
@@ -38,8 +44,8 @@ export default function Form() {
 
             <fieldset>
                 <legend>성별</legend>
-                <label>여</label> <input type="radio" name="gender" value={ "female" } defaultChecked={ gender === 'female' } onChange={e => setGender(e.target.value)} />
-                <label>남</label> <input type="radio" name="gender" value={ "male" } defaultChecked={ gender === 'male' } onChange={e => setGender(e.target.value)} />
+                <label>여</label> <input type="radio" name="gender" value={ "female" } defaultChecked={gender === 'female'} onChange={e => setGender(e.target.value)} />
+                <label>남</label> <input type="radio" name="gender" value={ "male" } defaultChecked={gender === 'male'} onChange={e => setGender(e.target.value)} />
             </fieldset>
 
             <label htmlFor="birthYear">생년</label>
@@ -57,12 +63,21 @@ export default function Form() {
                 <option value='1990'>1990년</option>
             </select>
 
-            <label htmlFor="birthYear">자기소개</label>
-            <textarea/>
+            <label htmlFor="description">자기소개</label>
+            <textarea id={'description'} value={description} onChange={e => setDescription(e.target.value)}/>
 
             <fieldset>
                 <legend>약관동의</legend>
-                <input id="agree-prov" type="checkbox" name="agreeProv" value= { "yes" } defaultChecked={ false } />
+                <input 
+                    id="agree-prov"
+                    type="checkbox"
+                    name="agreeProv"
+                    value= {agreeProv}
+                    defaultChecked={agreeProv === 'yes'}
+                    onChange={e => {
+                        const val = e.target.value === 'yes' ? 'no' : 'yes';
+                        setAgreeProv(val);
+                    }}/>
                 <label>서비스 약관에 동의합니다.</label>
             </fieldset>
 
