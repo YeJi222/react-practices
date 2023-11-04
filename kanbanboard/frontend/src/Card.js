@@ -9,7 +9,7 @@ const Card = ({no, title, description, tasks}) => {
         <div className={styles.Card}>
             <div
                 className={
-                    showDetails ?
+                    showDetails ? // showDetails == true
                         [styles.Card__Title, styles.Card__Title__open].join(' '):
                         styles.Card__Title
                 }

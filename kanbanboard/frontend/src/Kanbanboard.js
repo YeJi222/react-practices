@@ -22,4 +22,7 @@ const KanbanBoard = () => {
     );
 };
 
+// filter : 배열 요소를 조건에 따라 필터링하여 새로운 배열을 생성하여 반환
+// cards 배열에서 status에 따라 필터링 
+
 export default KanbanBoard;
