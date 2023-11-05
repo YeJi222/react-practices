@@ -4,25 +4,22 @@ import Clock from './Clock';
 
 export default function App() {
     const [ticks, setTicks] = useState(0);
-    const [hours, setHours] = useState('00');
-    const [minutes, setMinutes] = useState('00');
-    const [seconds, setSeconds] = useState('00');
+    const [clock, setClock] = useState(new Date());
     
     useEffect(() => {
         const interval = setInterval(() => {
-            /* 시간 */
-            var clock = new Date();
-            var getTime = [clock.getHours(), clock.getMinutes(), clock.getSeconds()];
-
-            setHours(getTime[0].toString().length === 1 ? '0' + getTime[0] : getTime[0]);
-            setMinutes(getTime[1].toString().length === 1 ? '0' + getTime[1] : getTime[1]);
-            setSeconds(getTime[2].toString().length === 1 ? '0' + getTime[2] : getTime[2]);
-
-            setTicks(ticks + 1);
+            setClock(new Date()); // Get Clock
+            setTicks(ticks + 1); // Increase Ticks
         }, 1000);
-
-        return() => clearInterval(interval); // 언마운트시 clear
+        
+        return() => clearInterval(interval); // Unmount - clear interval
     }, [ticks]);
+
+    var getTime = [clock.getHours(), clock.getMinutes(), clock.getSeconds()];
+    
+    const hours = getTime[0].toString().length === 1 ? '0' + getTime[0] : getTime[0];
+    const minutes = getTime[1].toString().length === 1 ? '0' + getTime[1] : getTime[1];
+    const seconds = getTime[2].toString().length === 1 ? '0' + getTime[2] : getTime[2];
 
     return (
         <>
