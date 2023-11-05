@@ -12,9 +12,11 @@ export default function App() {
         const interval = setInterval(() => {
             /* 시간 */
             var clock = new Date();
-            setHours(clock.getHours().toString().length === 1 ? '0' + clock.getHours() : clock.getHours());
-            setMinutes(clock.getMinutes().toString().length === 1 ? '0' + clock.getMinutes() : clock.getMinutes());
-            setSeconds(clock.getSeconds().toString().length === 1 ? '0' + clock.getSeconds() : clock.getSeconds());
+            var getTime = [clock.getHours(), clock.getMinutes(), clock.getSeconds()];
+
+            setHours(getTime[0].toString().length === 1 ? '0' + getTime[0] : getTime[0]);
+            setMinutes(getTime[1].toString().length === 1 ? '0' + getTime[1] : getTime[1]);
+            setSeconds(getTime[2].toString().length === 1 ? '0' + getTime[2] : getTime[2]);
 
             setTicks(ticks + 1);
         }, 1000);
