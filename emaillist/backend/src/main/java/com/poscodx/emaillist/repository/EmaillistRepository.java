@@ -16,5 +16,10 @@ public class EmaillistRepository {
 	public List<EmaillistVo> findAll() {
 		return sqlSession.selectList("emaillist.findAll");
 	}
+
+	public Long insert(EmaillistVo emaillistVo) {
+		sqlSession.insert("emaillist.insert", emaillistVo);
+		return emaillistVo.getNo();
+	}
 	
 }
