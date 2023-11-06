@@ -3,31 +3,43 @@ import './assets/scss/App.scss'
 import Clock from './Clock';
 
 export default function App() {
+    const getCurrentClockTime = () => {
+        const now = new Date();
+        const hours = now.getHours();
+
+        return {
+            hours: ('0' + (hours > 12 ? hours - 12 : hours)).slice(-2),
+            minutes: ('0' + now.getMinutes()).slice(-2),
+            seconds: ('0' + now.getSeconds()).slice(-2),
+            session: hours > 12 ? 'pm': 'am'
+        }
+    }
+
+    const [currentTime, setCurrentTime] = useState(getCurrentClockTime());
     const [ticks, setTicks] = useState(0);
-    const [clock, setClock] = useState(new Date());
-    
+
     useEffect(() => {
-        const interval = setInterval(() => {
-            setClock(new Date()); // Set Clock
-            setTicks(ticks + 1); // Increase Ticks
+        const intervalId = setInterval(() => {
+            setCurrentTime(getCurrentClockTime());
+            setTicks(x => x+1);
         }, 1000);
-        
-        return() => clearInterval(interval); // Unmount - clear interval
-    }, [ticks]);
 
-    var getTime = [clock.getHours(), clock.getMinutes(), clock.getSeconds()];
-    
-    const hours = getTime[0].toString().length === 1 ? '0' + getTime[0] : getTime[0];
-    const minutes = getTime[1].toString().length === 1 ? '0' + getTime[1] : getTime[1];
-    const seconds = getTime[2].toString().length === 1 ? '0' + getTime[2] : getTime[2];
+        return () => {
+            clearInterval(intervalId);
+        }
+    }, []);
 
-    return (
+    return(
         <>
-            <Clock
-                message={`ex04: thicks ${ticks}`}
-                hours={hours}
-                minutes={minutes}
-                seconds={seconds}/>
-        </>        
+            {
+                ticks % 10 === 0 ?
+                null :
+                <Clock
+                    message={`ex05-Component LifeCycle: ${ticks}`}
+                    hours={currentTime.hours}
+                    minutes={currentTime.minutes}
+                    seconds={currentTime.seconds}/>
+            }
+        </>
     );
 }
