@@ -1,9 +1,10 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import Task from './Task';
 import styles from './assets/css/TaskList.css';
 
 // 카드 번호 가져오기 
 const TaskList = ({no}) => {
+    const refForm = useRef(null);
     const [tasks, setTasks] = useState(null);
 
     const fetchTaskList = async () => {
@@ -36,6 +37,32 @@ const TaskList = ({no}) => {
         fetchTaskList();
     }, []);
 
+    const addTask = async (newTask) => {
+        try{
+            const response = await fetch('/api/task', {
+                method: 'post', 
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept':'application/json'
+                },
+                body: JSON.stringify(newTask)
+            });
+
+            if(!response.ok){
+                throw new Error(`${response.status} ${response.statusText}`)
+            }
+
+            const json = await response.json();
+            if(json.result != 'success'){
+                throw new Error(`${json.result} ${json.message}`)
+            }
+
+            setTasks([json.data, ...tasks]);
+        } catch(err){
+            console.error(err);
+        }
+    }
+
     return (
         tasks === null ?
         null :
@@ -51,10 +78,28 @@ const TaskList = ({no}) => {
                                         setTasks={setTasks} />)
                 }
             </ul>
-            <input
-                type='text'
-                placeholder={'태스크 추가'}
-                className={styles.TaskList__add_task}/>
+
+            <form 
+                ref={refForm}
+                onSubmit={(e) => {
+                    e.preventDefault();
+                    const newTask = {
+                        name: e.target.contents.value,
+                        done: 'N',
+                        cardNo: no
+                    };
+
+                    addTask(newTask);
+                    refForm.current.reset();
+                }}>
+                <input
+                    type='text'
+                    placeholder={'태스크 추가'}
+                    name='contents'
+                    className={styles.TaskList__add_task}
+                /> 
+                <input type='submit' value='등록' />
+            </form> 
         </div>
     );
 };
