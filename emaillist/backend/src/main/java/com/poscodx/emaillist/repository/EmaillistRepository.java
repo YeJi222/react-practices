@@ -13,8 +13,10 @@ public class EmaillistRepository {
 	@Autowired
 	private SqlSession sqlSession;
 
-	public List<EmaillistVo> findAll() {
-		return sqlSession.selectList("emaillist.findAll");
+	public List<EmaillistVo> findAll(String keyword) {
+		System.out.println("repository: " + keyword);
+		System.out.println(sqlSession.selectList("emaillist.findAll", keyword));
+		return sqlSession.selectList("emaillist.findAll", keyword);
 	}
 
 	public Long insert(EmaillistVo emaillistVo) {

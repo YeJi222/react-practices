@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,12 +23,15 @@ public class ApiController {
 	private EmaillistRepository emaillistRepository;
 	
 	@GetMapping("/api")
-	public ResponseEntity<JsonResult> read() {
-		log.info("Request[GET /api]");
+	public ResponseEntity<JsonResult> read(
+			@RequestParam(value="kw", required=true, defaultValue="") String keyword) {
+		log.info("Request[GET /api]:"+ keyword);
+		
+		System.out.println("controller: " + keyword);
 		
 		return ResponseEntity
 				.status(HttpStatus.OK)
-				.body(JsonResult.success(emaillistRepository.findAll()));
+				.body(JsonResult.success(emaillistRepository.findAll(keyword)));
 	}
 	
 	@PostMapping("/api")

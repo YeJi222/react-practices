@@ -7,10 +7,6 @@ import Emaillist from './Emaillist';
 
 function App() {
     const [emails, setEmails] = useState(null);
-    const searchEmail = (keyword) => {
-        const newEmails = emails.filter(email => email.firstName.indexOf(keyword) !== -1 || email.lastName.indexOf(keyword) !== -1 || email.email.indexOf(keyword) !== -1);
-        setEmails(newEmails);
-    };
 
     const addEmail = async (email) => {
         try{
@@ -32,17 +28,15 @@ function App() {
                 throw new Error(`${json.result} ${json.message}`)
             }
 
-            const newEmails = [json.data, ...emails];
-            setEmails(newEmails);
+            setEmails([json.data, ...emails]);
         } catch(err){
             console.error(err);
         }
     }
 
-    /*
-    const fetchEmails = async () => {
+    const fetchEmails = async (keyword) => {
         try{
-            const response = await fetch('/api', {
+            const response = await fetch(`/api?kw=${keyword ? keyword : ''}`, {
                 method: 'get',
                 headers: {
                     'Content-Type': 'application/json',
@@ -65,13 +59,14 @@ function App() {
             console.error(err);
         }
     };
-    */
 
     useEffect(() => {
-        // fetchEmails();
+        fetchEmails();
+
+        /*
         (async () => {
             try{
-                const response = await fetch('/api', {
+                const response = await fetch(`/api?kw=${keyword ? keyword : ''}`, {
                     method: 'get',
                     headers: {
                         'Content-Type': 'application/json',
@@ -94,12 +89,13 @@ function App() {
                 console.error(err);
             }
         })();
+        */
     }, []);
 
     return (
         <div id={'App'}>
             <RegisterForm addEmail={addEmail}/>
-            <SearchBar searchEmail={searchEmail}/>
+            <SearchBar fetchEmails={fetchEmails}/>
             {
                 emails === null ?
                 null :
