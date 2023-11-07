@@ -25,7 +25,6 @@ const KanbanBoard = () => {
                 throw new Error(`${json.result} ${json.message}`)
             }
 
-            // console.log(json.data);
             setCards(json.data);
         } catch(err){
             console.error(err);

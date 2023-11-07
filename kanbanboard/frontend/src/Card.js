@@ -21,7 +21,7 @@ const Card = ({no, title, description}) => {
             {showDetails ? 
                 <div className={styles.Card__Details}>
                     {description}
-                    <TaskList no={no}/>
+                    <TaskList no={no}/> {/* no : cardNo */}
                 </div>:
                 null
             }   

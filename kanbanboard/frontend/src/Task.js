@@ -23,11 +23,11 @@ const Task = ({no, name, done, tasks, setTasks}) => {
                 throw new Error(`${json.result} ${json.message}`)
             }
 
-            const copiedTasks = [...tasks];
-            const noIdx = tasks.findIndex(task => task.no === json.data.no);
-            copiedTasks[noIdx].done = json.data.done;
+            const copiedTasks = [...tasks]; // tasks 배열 복사 
+            const noIdx = tasks.findIndex(task => task.no === json.data.no); // 변경된 task no의 리스트 index 찾기 
+            copiedTasks[noIdx].done = json.data.done; // 변경할 리스트 index의 done(체크여부)만 변경해주기 
 
-            setTasks(copiedTasks);
+            setTasks(copiedTasks); // 업데이트하여 재구성한 배열 set
         } catch(err){
             console.error(err);
         }
@@ -48,7 +48,7 @@ const Task = ({no, name, done, tasks, setTasks}) => {
                 throw new Error(`${response.status} ${response.statusText}`)
             }
 
-            // 해당 task만 delete
+            // 해당 task만 delete - filtering
             const json = await response.json();
             if(json.result != 'success'){
                 throw new Error(`${json.result} ${json.message}`)

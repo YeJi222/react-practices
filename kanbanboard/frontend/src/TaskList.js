@@ -2,7 +2,6 @@ import React, {useState, useEffect, useRef} from 'react';
 import Task from './Task';
 import styles from './assets/css/TaskList.css';
 
-// 카드 번호 가져오기 
 const TaskList = ({no}) => {
     const refForm = useRef(null);
     const [tasks, setTasks] = useState(null);
@@ -83,7 +82,7 @@ const TaskList = ({no}) => {
                 ref={refForm}
                 onSubmit={(e) => {
                     e.preventDefault();
-                    if(e.target.contents.value.trim() != ''){
+                    if(e.target.contents.value.trim() != ''){ // 빈칸 입력되지 않도록 
                         const newTask = {
                             name: e.target.contents.value,
                             done: 'N',
