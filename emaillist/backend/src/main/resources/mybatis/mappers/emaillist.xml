@@ -7,7 +7,7 @@
 		<![CDATA[
 		  select no, first_name, last_name, email 
 		  	from emaillist
-		  order by no
+		  order by no desc
 		]]>
 	</select>
 	
