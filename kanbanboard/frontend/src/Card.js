@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import styles from './assets/scss/Card.scss';
 import TaskList from './TaskList';
 
-const Card = ({no, title, description, tasks}) => {
+const Card = ({no, title, description}) => {
     const [showDetails, setShowDetails] = useState(false);
 
     return (
@@ -21,7 +21,7 @@ const Card = ({no, title, description, tasks}) => {
             {showDetails ? 
                 <div className={styles.Card__Details}>
                     {description}
-                    <TaskList tasks={tasks}/>
+                    <TaskList no={no}/>
                 </div>:
                 null
             }   

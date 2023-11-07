@@ -30,6 +30,7 @@ public class ApiController {
 
 	@GetMapping("/card")
 	public ResponseEntity<JsonResult> readCard() {
+		
 		return ResponseEntity
 				.status(HttpStatus.OK)
 				.body(JsonResult.success(cardRepository.findAll()));
@@ -37,12 +38,14 @@ public class ApiController {
 	
 	@GetMapping("/task")
 	public ResponseEntity<JsonResult> readTask(Long cardNo) {
+		
+		// System.out.println(taskRepository.findAllByCardNo(cardNo));
+		
 		return ResponseEntity
 				.status(HttpStatus.OK)
 				.body(JsonResult.success(taskRepository.findAllByCardNo(cardNo)));
 	}
 
-	// 카드 번호 넣고 
 	@PostMapping("/task")
 	public ResponseEntity<JsonResult> createTask(@RequestBody TaskVo taskVo) {
 		taskRepository.insert(taskVo);
@@ -55,6 +58,8 @@ public class ApiController {
 	@SuppressWarnings("serial")
 	@PutMapping("/task/{no}")
 	public ResponseEntity<JsonResult> updateTask(@PathVariable("no") Long no, String done) {
+		System.out.println("no : " + no + " , done : " + done);
+		
 		taskRepository.updateDone(no, done);
 		
 		return ResponseEntity
