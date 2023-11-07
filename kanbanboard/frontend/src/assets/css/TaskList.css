@@ -1,7 +1,19 @@
+.add_area {
+    display: grid;
+    grid-template-columns: 80% 20%;
+}
 .TaskList__add_task {
     border: 1px dashed #bbb;
-    width: 100%;
+    /* width: 90%; */
     padding: 10px;
     margin-top: 5px;
-    border-radius: 3px
+    border-radius: 3px;
+}
+.add_button {
+    border: 1px dashed #bbb;
+    /* width: 8%; */
+    background-color: white;
+    padding: 10px;
+    margin-left: 5px;
+    margin-top: 5px;
 }

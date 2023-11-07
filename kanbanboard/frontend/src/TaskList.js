@@ -83,22 +83,27 @@ const TaskList = ({no}) => {
                 ref={refForm}
                 onSubmit={(e) => {
                     e.preventDefault();
-                    const newTask = {
-                        name: e.target.contents.value,
-                        done: 'N',
-                        cardNo: no
-                    };
+                    if(e.target.contents.value.trim() != ''){
+                        const newTask = {
+                            name: e.target.contents.value,
+                            done: 'N',
+                            cardNo: no
+                        };
 
-                    addTask(newTask);
-                    refForm.current.reset();
+                        addTask(newTask);
+                        refForm.current.reset();
+                    }
+                    console.error('태스크 추가 칸을 입력해주세요');
                 }}>
-                <input
-                    type='text'
-                    placeholder={'태스크 추가'}
-                    name='contents'
-                    className={styles.TaskList__add_task}
-                /> 
-                <input type='submit' value='등록' />
+                <div className={styles.add_area}>
+                    <input
+                        type='text'
+                        placeholder={'태스크 추가'}
+                        name='contents'
+                        className={styles.TaskList__add_task}
+                    /> 
+                    <input type='submit' value='추가' className={styles.add_button} />
+                </div>
             </form> 
         </div>
     );
