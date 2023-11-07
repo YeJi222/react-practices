@@ -15,21 +15,20 @@ export default function App() {
     }, []);
 
     const handlerHashChange = () => {
-        console.log("test");
         console.log(window.location.hash);
-        setRoute(window.location.hash.substring(1));
+        setRoute(window.location.hash.substring(1))
     }
 
     return (() => {
         switch(route) {
-            case '/' : 
-                return <Main/>;
+            case '/' :
+                return <Main />;
             case '/guestbook' :
                 return <Guestbook />;
-            case '/gallery' :
+            case '/gallery':
                 return <Gallery />;
             default :
-                return null;
+                return null;                    
         }
     })();
 }
