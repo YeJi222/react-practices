@@ -5,12 +5,15 @@ import java.util.HashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.poscodx.kanbanboard.dto.JsonResult;
@@ -39,8 +42,6 @@ public class ApiController {
 	@GetMapping("/task")
 	public ResponseEntity<JsonResult> readTask(Long cardNo) {
 		
-		// System.out.println(taskRepository.findAllByCardNo(cardNo));
-		
 		return ResponseEntity
 				.status(HttpStatus.OK)
 				.body(JsonResult.success(taskRepository.findAllByCardNo(cardNo)));
@@ -58,8 +59,6 @@ public class ApiController {
 	@SuppressWarnings("serial")
 	@PutMapping("/task/{no}")
 	public ResponseEntity<JsonResult> updateTask(@PathVariable("no") Long no, String done) {
-		System.out.println("no : " + no + " , done : " + done);
-		
 		taskRepository.updateDone(no, done);
 		
 		return ResponseEntity
@@ -70,4 +69,14 @@ public class ApiController {
 				}}));
 	}
 
+	@DeleteMapping("/task/delete/{no}")
+	public ResponseEntity<JsonResult> deleteTask(@PathVariable("no") Long no) {
+		// System.out.println("no : " + no);
+		
+		taskRepository.deleteTask(no);
+		
+		return ResponseEntity
+				.status(HttpStatus.OK)
+				.body(JsonResult.success(no));
+	}
 }

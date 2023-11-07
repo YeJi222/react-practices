@@ -33,6 +33,34 @@ const Task = ({no, name, done, tasks, setTasks}) => {
         }
     };
 
+    const deleteTask = async () => {
+        try{
+            const response = await fetch(`/api/task/delete/${no}`, {
+                method: 'delete',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept':'application/json'
+                },
+                body: null
+            });
+    
+            if(!response.ok){
+                throw new Error(`${response.status} ${response.statusText}`)
+            }
+
+            // 해당 task만 delete
+            const json = await response.json();
+            if(json.result != 'success'){
+                throw new Error(`${json.result} ${json.message}`)
+            }
+
+            const newTasks = tasks.filter((task) => task.no != json.data);
+            setTasks(newTasks);
+        } catch(err){
+            console.error(err);
+        }
+    };
+
     return (
         <li className={styles.TaskList__Task}>
             <input
@@ -42,7 +70,7 @@ const Task = ({no, name, done, tasks, setTasks}) => {
                     updateTaskCheck(done === 'Y' ? 'N' : 'Y');
                 }}/>
             {name}    
-            <a href='#' className={styles.TaskList__Task__remove} />
+            <a onClick={deleteTask} className={styles.TaskList__Task__remove} />
         </li>
     );
 };
