@@ -13,5 +13,6 @@ fi
 
 echo "starting [$APPLICATION_NAME]"
 cd $SCRIPT_DIR
-mkdir test
-nohup java -Dspring.profiles.active=production -jar $SCRIPT_DIR/$APPLICATION_NAME.jar >> $SCRIPT_DIR/launch.log &
+mkdir aaa
+# nohup java -Dspring.profiles.active=production -jar $SCRIPT_DIR/$APPLICATION_NAME.jar >> $SCRIPT_DIR/launch.log &
+nohup java -Dspring.profiles.active=production -jar $APPLICATION_NAME.jar >> $SCRIPT_DIR/launch.log &
