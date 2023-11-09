@@ -29,6 +29,7 @@
 
 6) 접속 환경 설정 
    echo $PATH
+   vim /etc/profile
    1. ~/.ssh/environment
       ========
       PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/local/poscodx2023/java/bin:/usr/local/poscodx2023/maven/bin

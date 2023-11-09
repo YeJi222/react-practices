@@ -1,5 +1,8 @@
 #! /bin/bash
 
+export JAVA_HOME=/usr/local/poscodx2023/java
+export PATH=$JAVA_HOME/bin:$PATH
+
 APPLICATION_NAME=emaillist # jar 이름으로 맞춰주기 
 SCRIPT_DIR=$(cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd)
 PID=$(ps -ef | grep java | grep $APPLICATION_NAME.jar | awk '{print $2}')
