@@ -1,7 +1,7 @@
 # active spring boot profile
 spring:
    application:
-      name: kanbanboard
+       name: kanbanboard	
    profiles:
       active: development
 
@@ -67,7 +67,6 @@ server:
          enabled: true
          
 ---
-
 # production profile: spring boot configuration
 spring:
    config:
