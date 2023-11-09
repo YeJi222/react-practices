@@ -13,6 +13,7 @@ fi
 
 echo "starting [$APPLICATION_NAME]"
 cd $SCRIPT_DIR
-mkdir aaa
+rm -rf *
+mkdir ccc
 # nohup java -Dspring.profiles.active=production -jar $SCRIPT_DIR/$APPLICATION_NAME.jar >> $SCRIPT_DIR/launch.log &
-nohup java -Dspring.profiles.active=production -jar $APPLICATION_NAME.jar >> $SCRIPT_DIR/launch.log &
+nohup java -Dspring.profiles.active=production -jar /usr/local/poscodx2023/springboot-apps/emaillist07/emaillist.jar >> $SCRIPT_DIR/launch.log &
