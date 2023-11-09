@@ -16,4 +16,4 @@ cd $SCRIPT_DIR
 # rm -rf *
 mkdir ddd
 # nohup java -Dspring.profiles.active=production -jar $SCRIPT_DIR/$APPLICATION_NAME.jar >> $SCRIPT_DIR/launch.log &
-nohup /usr/local/poscodx2023/java/bin -Dspring.profiles.active=production -jar $SCRIPT_DIR/$APPLICATION_NAME.jar >> $SCRIPT_DIR/launch.log &
+nohup /usr/local/poscodx2023/java/ -Dspring.profiles.active=production -jar $SCRIPT_DIR/$APPLICATION_NAME.jar >> $SCRIPT_DIR/launch.log &
