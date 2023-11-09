@@ -17,4 +17,3 @@ echo "starting [$APPLICATION_NAME]"
 cd $SCRIPT_DIR
 nohup java -Dspring.profiles.active=production -jar $SCRIPT_DIR/$APPLICATION_NAME.jar >> $SCRIPT_DIR/launch.log &
 # nohup /usr/local/poscodx2023/java/bin/java -Dspring.profiles.active=production -jar $SCRIPT_DIR/$APPLICATION_NAME.jar >> $SCRIPT_DIR/launch.log &
-# nohup /usr/local/poscodx2023/java/bin/java -Dspring.profiles.active=production -jar $SCRIPT_DIR/$APPLICATION_NAME.jar >> $SCRIPT_DIR/launch.log &
